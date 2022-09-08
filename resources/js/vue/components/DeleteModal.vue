@@ -35,7 +35,6 @@ export default {
         deleteContact() {
             document.getElementById('closeBtn').click();
             let url = '/api/delete-contact/' + this.deleteId;
-            // console.log(url)
             axios.get(url)
                 .then(response => {
                     this.msg.type = response.data.type;
@@ -44,7 +43,6 @@ export default {
                     this.$parent.getContacts(); //pass data to the parent component
                     this.$emit('message', this.msg); //pass data to patent component
 
-                    // console.log(response)
                 })
                 .catch(error => {
                     console.log(error);

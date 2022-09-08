@@ -74,7 +74,6 @@ export default {
                         this.$emit('message', this.msg); //pass data to patent component
                 })
                 .catch((error) => {
-                    // error.response.status Check status code
                     console.log(error);
                 })
         }

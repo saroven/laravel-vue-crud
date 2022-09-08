@@ -95,8 +95,6 @@ export default {
         },
         getMessage(message) {
             this.msg = message; //get message (type, txt) and assign
-
-            console.log(this.msg)
         }
     }
 }
