@@ -28,7 +28,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="addCancel" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" id="addCancel" class="btn btn-secondary" data-bs-dismiss="modal">Cancel
+                    </button>
                     <button type="button" @click="addContact" class="btn btn-success">Save</button>
                 </div>
             </div>
@@ -66,6 +67,10 @@ export default {
                 .then((response) => {
                     this.$parent.getContacts(); //call parent component method
                     document.getElementById('addCancel').click();
+
+                    this.msg.type = response.data.type;
+                    this.msg.txt = response.data.msg;
+                    this.$emit('message', this.msg); //pass data to patent component
                 })
                 .catch((error) => {
                     console.log(error);

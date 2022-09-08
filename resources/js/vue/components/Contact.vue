@@ -6,20 +6,16 @@
         </button>
         <!--message -->
 
-        <div v-if="messageType === 'error'" class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>success!</strong> {{ messageText }}
+        <div v-if="msg.type === 'success'" class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>success!</strong> {{ msg.txt }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
-        <div v-if="messageType === 'error'" class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>success!</strong> {{ messageText }}
+        <div v-if="msg.type === 'error'" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Ops!</strong> {{ msg.txt }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
-        <div v-else-if="messageType === 'success'" class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>success!</strong> {{ messageText }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
         <!--        end message -->
         <table class="table">
             <thead>
@@ -52,7 +48,7 @@
             </tbody>
         </table>
     </div>
-    <AddModal></AddModal>
+    <AddModal @message="getMessage"></AddModal>
     <EditModal :editId="editId" @message="getMessage"></EditModal>
     <DeleteModal :deleteId="deleteId" @message="getMessage"></DeleteModal>
 
@@ -75,8 +71,7 @@ export default {
             contacts: [],
             deleteId: 0,
             editId: 0,
-            messageType: '',
-            messageText: '',
+            msg: []
         }
     },
     mounted() {
@@ -98,11 +93,10 @@ export default {
         setDeleteId(id) {
             this.deleteId = id;
         },
-        getMessage(msg) {
+        getMessage(message) {
+            this.msg = message; //get message (type, txt) and assign
 
-            this.messageText = msg.txt;
-            this.messageType = msg.type
-
+            console.log(this.msg)
         }
     }
 }

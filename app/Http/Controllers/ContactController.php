@@ -104,8 +104,22 @@ class ContactController extends Controller
 
         $contact->phone = $request->get('phone');
 
-        $contact->save();
+        if ($contact->save()) {
+            return response()->json(
+                [
+                    'type' => "success",
+                    'msg' => "Added Successful",
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    'type' => "success",
+                    'msg' => "Something went wrong!",
+                ]
+            );
+        }
 
-        return $contact;
+
     }
 }
